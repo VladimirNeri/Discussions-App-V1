@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name }  = req.body;
+  const { name, profilePicture }  = req.body;
   if(!name) {
     res.status(400);
     throw new Error('No Name');
@@ -17,11 +17,12 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
   //Create user
-  const user = await User.create({ name });
+  const user = await User.create({ name, profilePicture });
   if (user) {
     res.status(201).json({
       id: user.id,
       name: user.name,
+      picture: user.profilePicture
     });
   } else {
     res.status(400);
@@ -29,6 +30,12 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.find();
+  res.status(200).json(user); 
+})
+
 module.exports = {
   registerUser,
+  getUser
 };

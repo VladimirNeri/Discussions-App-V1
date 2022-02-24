@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
+const root = 'localhost:3001/users/images'; 
 
 const chatSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
+    name: String, 
+    picture: {
+      type: String, 
+      get: v => `$(root)$(v)`
     },
     text: {
       type: String,
       required: [true, 'Please add a text value'],
     },
+    votes: Number,
   },
   {
     timestamps: true,

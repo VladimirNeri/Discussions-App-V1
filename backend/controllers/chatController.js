@@ -14,7 +14,12 @@ const createChat = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Please add a text field');
   }
-  const chats = await Chat.create({ text: req.body.text });
+  const chats = await Chat.create({
+    text: req.body.text,
+    name: req.body.name,
+    votes: req.body.votes,
+    picture: req.body.picture
+  });
   res.status(200).json(chats);
 });
 
