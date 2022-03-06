@@ -1,10 +1,10 @@
 {
-  "name": "discussions-app-v1",
+  "name": "discussions-app-v1-backend",
   "version": "1.0.0",
-  "description": "A Discussions App",
-  "main": "server.js",
   "author": "Vladimir Neri",
   "license": "MIT",
+  "description": "A Discussions App",
+  "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js"
